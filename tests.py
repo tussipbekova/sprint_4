@@ -44,7 +44,7 @@ class TestBooksCollector:
 
 
 
-    def test_get_books_with_specific_genre_with_rigth_genre(self):
+    def test_get_books_with_specific_genre_with_right_genre(self):
         collector = BooksCollector()
 
         collector.add_new_book('Синий трактор')
@@ -56,4 +56,16 @@ class TestBooksCollector:
         actual_books =collector.get_books_with_specific_genre("Мультфильмы")
 
         assert actual_books == ['Синий трактор','Моана']
+
+    def test_get_books_genre_received_all(self):
+         collector = BooksCollector()
+
+         collector.add_new_book('Моана')
+         collector.add_new_book('Бриллиантовая рука')
+         collector.set_book_genre('Моана','Мультфильмы')
+         collector.set_book_genre('Бриллиантовая рука', 'Комедии')
+
+         expected_genre = collector.get_books_genre()
+
+         assert expected_genre == {'Моана':'Мультфильмы' ,'Бриллиантовая рука': 'Комедии'}
 

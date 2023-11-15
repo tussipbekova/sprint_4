@@ -93,3 +93,16 @@ class TestBooksCollector:
         expected_favourite_books=collector.get_list_of_favorites_books()
 
         assert expected_favourite_books == ['Шерлок Холмс']
+
+    def test_delete_book_from_favorites_decrease_number_of_favorites(self):
+        collector=BooksCollector()
+
+        collector.add_new_book('Анна Каренина')
+        collector.add_new_book('Шантарам')
+        collector.add_book_in_favorites('Анна Каренина')
+        collector.add_book_in_favorites('Шантарам')
+        collector.delete_book_from_favorites('Шантарам')
+
+        expected_favourite_books=collector.get_list_of_favorites_books()
+
+        assert expected_favourite_books == ['Анна Каренина']

@@ -1,4 +1,5 @@
 from main import BooksCollector
+import pytest
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
 # обязательно указывать префикс Test
@@ -55,6 +56,14 @@ class TestBooksCollector:
         actual_books =collector.get_books_with_specific_genre("Мультфильмы")
 
         assert actual_books == ['Синий трактор','Моана']
+
+    @pytest.mark.parametrize('book', ['', 'Бриллиантовая рука Бриллиантовая рука Бриллиантовая рука'])
+    def test_add_new_book_with_not_good_name(self, book):
+
+        collector = BooksCollector()
+        collector.add_new_book(book)
+
+        assert len(collector.get_books_genre().keys()) == 0
 
     def test_get_books_genre_received_all(self):
          collector = BooksCollector()

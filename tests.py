@@ -106,3 +106,18 @@ class TestBooksCollector:
         expected_favourite_books=collector.get_list_of_favorites_books()
 
         assert expected_favourite_books == ['Анна Каренина']
+
+    def test_get_list_of_favorites_books_received_all(self):
+        collector=BooksCollector()
+
+        collector.add_new_book('Война и мир')
+        collector.add_new_book('Маленький принц')
+        collector.add_new_book('Гордость и предубеждение')
+
+        collector.add_book_in_favorites('Война и мир')
+        collector.add_book_in_favorites('Маленький принц')
+        collector.add_book_in_favorites('Гордость и предубеждение')
+
+        expected_favourite_books = collector.get_list_of_favorites_books()
+
+        assert expected_favourite_books == ['Война и мир','Маленький принц','Гордость и предубеждение']

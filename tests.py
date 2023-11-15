@@ -80,3 +80,16 @@ class TestBooksCollector:
 
         assert expected_books == ['Моана']
 
+    def test_add_book_in_favorites_get_favourites(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Три кота')
+        collector.add_new_book('Шерлок Холмс')
+        collector.set_book_genre('Три кота', 'Мультфильмы')
+        collector.set_book_genre('Шерлок Холмс', 'Детективы')
+
+        collector.add_book_in_favorites('Шерлок Холмс')
+
+        expected_favourite_books=collector.get_list_of_favorites_books()
+
+        assert expected_favourite_books == ['Шерлок Холмс']

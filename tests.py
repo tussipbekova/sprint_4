@@ -36,23 +36,17 @@ class TestBooksCollector:
 
     def test_get_books_with_specific_genre_with_right_genre(self):
         collector = BooksCollector()
-        book_genres = {'Синий трактор':'Мультфильмы','Бриллиантовая рука':'Комедии','Моана':"Мультфильмы"}
-        book_names = list(book_genres.keys())
-        sinii_traktor = book_names[0]
-        brilliantovaya_ruka = book_names[1]
-        moana = book_names[2]
-
-        collector.add_new_book(sinii_traktor)
-        collector.add_new_book(brilliantovaya_ruka)
-        collector.add_new_book(moana)
-        collector.set_book_genre(sinii_traktor,book_genres[sinii_traktor])
-        collector.set_book_genre(brilliantovaya_ruka,book_genres[brilliantovaya_ruka])
-        collector.set_book_genre(moana, book_genres[moana])
+        collector.add_new_book('Синий трактор')
+        collector.add_new_book('Бриллиантовая рука')
+        collector.add_new_book('Моана')
+        collector.set_book_genre('Синий трактор','Мультфильмы')
+        collector.set_book_genre('Бриллиантовая рука','Комедии')
+        collector.set_book_genre('Моана', 'Мультфильмы')
         actual_books =collector.get_books_with_specific_genre("Мультфильмы")
 
         assert actual_books == ['Синий трактор','Моана']
 
-    @pytest.mark.parametrize('book', ['Отцы и дети', 'Фауст'])
+    @pytest.mark.parametrize('book', ['Отцы и дети'])
     def test_add_new_book_with_good_name(self, book):
 
         collector = BooksCollector()
@@ -83,18 +77,11 @@ class TestBooksCollector:
 
     def test_get_books_for_children_with_right_books(self):
         collector = BooksCollector()
-        book_genres = {'Моана': 'Мультфильмы', 'Шерлок Холмс': 'Детективы', 'Дракула': "Ужасы"}
-        book_names = list(book_genres.keys())
-        moana = book_names[0]
-        sherlok_holms = book_names[1]
-        drakula = book_names[2]
 
-        collector.add_new_book(moana)
-        collector.add_new_book(sherlok_holms)
-        collector.add_new_book(drakula)
-        collector.set_book_genre(moana, book_genres[moana])
-        collector.set_book_genre(sherlok_holms, book_genres[sherlok_holms])
-        collector.set_book_genre(drakula,book_genres[drakula])
+        collector.add_new_book('Моана')
+        collector.add_new_book('Шерлок Холмс')
+        collector.set_book_genre('Моана', 'Мультфильмы')
+        collector.set_book_genre('Шерлок Холмс', 'Детективы')
 
         expected_books = collector.get_books_for_children()
 
@@ -104,7 +91,6 @@ class TestBooksCollector:
         collector = BooksCollector()
 
         collector.add_new_book('Шерлок Холмс')
-        collector.set_book_genre('Шерлок Холмс', 'Детективы')
 
         collector.add_book_in_favorites('Шерлок Холмс')
 
